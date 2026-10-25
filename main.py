@@ -1,3 +1,4 @@
+import self_manager
 import os, json, hmac, hashlib, time
 from urllib.parse import parse_qsl
 from flask import Flask, render_template, request, jsonify
