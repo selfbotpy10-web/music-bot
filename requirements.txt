@@ -1,5 +1,6 @@
-Flask==3.1.1
-Flask-SQLAlchemy==3.1.1
-gunicorn==23.0.0
-psycopg[binary]==3.2.9
-python-telegram-bot==22.5
+
+Flask
+Flask-SQLAlchemy
+python-telegram-bot
+gunicorn
+psycopg2-binary
