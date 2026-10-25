@@ -1,63 +1,78 @@
 
 import os
 import sys
+import time
 import signal
 import subprocess
-import time
 
 PORT = os.environ.get("PORT", "8080")
-
 processes = []
+stopping = False
 
-def shutdown(*args):
-    print("در حال متوقف کردن سرویس‌ها...", flush=True)
+
+def stop_all(*_):
+    global stopping
+
+    if stopping:
+        return
+
+    stopping = True
+    print("Stopping web app and Telegram bot...", flush=True)
 
     for process in processes:
         if process.poll() is None:
             process.terminate()
 
     for process in processes:
-        try:
-            process.wait(timeout=10)
-        except subprocess.TimeoutExpired:
-            process.kill()
+        if process.poll() is None:
+            try:
+                process.wait(timeout=10)
+            except subprocess.TimeoutExpired:
+                process.kill()
 
     sys.exit(0)
 
-signal.signal(signal.SIGTERM, shutdown)
-signal.signal(signal.SIGINT, shutdown)
 
 def main():
-    if not os.path.isfile("main.py"):
-        raise FileNotFoundError("فایل main.py پیدا نشد.")
+    for filename in ("main.py", "bot.py"):
+        if not os.path.isfile(filename):
+            raise FileNotFoundError(
+                f"Required file not found: {filename}"
+            )
 
-    if not os.path.isfile("bot.py"):
-        raise FileNotFoundError("فایل bot.py پیدا نشد.")
+    signal.signal(signal.SIGTERM, stop_all)
+    signal.signal(signal.SIGINT, stop_all)
+
+    print("Starting Flask web application...", flush=True)
 
     web = subprocess.Popen([
-        sys.executable, "-m", "gunicorn",
-        "main:app",
-        "--bind", f"0.0.0.0:{PORT}",
+        sys.executable,
+        "-m", "gunicorn",
         "--workers", "1",
-        "--access-logfile", "-"
+        "--bind", f"0.0.0.0:{PORT}",
+        "--access-logfile", "-",
+        "--error-logfile", "-",
+        "main:app",
     ])
-
     processes.append(web)
 
-    time.sleep(2)
+    time.sleep(3)
 
     if web.poll() is not None:
         raise RuntimeError(
-            "وب‌اپ اجرا نشد؛ خطاهای Gunicorn و main.py را بررسی کن."
+            "Gunicorn failed. Check the web application logs."
         )
 
-    bot = subprocess.Popen([
-        sys.executable, "-u", "bot.py"
-    ])
+    print("Starting Telegram bot...", flush=True)
 
+    bot = subprocess.Popen([
+        sys.executable,
+        "-u",
+        "bot.py",
+    ])
     processes.append(bot)
 
-    print("وب‌اپ و ربات شروع به اجرا کردند.", flush=True)
+    print("Web app and Telegram bot have been started.", flush=True)
 
     while True:
         for process in processes:
@@ -65,12 +80,13 @@ def main():
 
             if code is not None:
                 print(
-                    f"یکی از سرویس‌ها متوقف شد؛ کد خروج: {code}",
-                    flush=True
+                    f"Process stopped unexpectedly: exit code {code}",
+                    flush=True,
                 )
-                shutdown()
+                stop_all()
 
-        time.sleep(3)
+        time.sleep(2)
+
 
 if __name__ == "__main__":
     main()
