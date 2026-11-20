@@ -8,10 +8,10 @@ if (!$botToken) {
     http_response_code(500);
     exit('BOT_TOKEN is not configured');
 }
-define('API_KEY', $botToken); //توکن قرار دهید
-$Dev = 59010771;
-$channel = "robozalaxy";  //ایدی چنل
-$botuser = "Robozybot"; //یوزرنیم بات
+define('9165577156:AAFeL8zMdmiQsJ3cr55PrAOywkTBqPuoCfE', $botToken); //توکن قرار دهید
+$Dev = 8650091524;
+$channel = "Music_sohail_bot1";  //ایدی چنل
+$botuser = "Jsjehrhrbot"; //یوزرنیم بات
 $folder = "https://test/Rat/Mosary2"; // دامنه و ادرس فایل
 //-------------------------------فانکشن ها---------------------------------------------
 function bot($method,$datas=[]){
