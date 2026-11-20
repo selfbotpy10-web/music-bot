@@ -1,8 +1,0 @@
-
-Telethon>=1.44,<2.0
-Flask
-Flask-SQLAlchemy
-python-telegram-bot
-gunicorn
-psycopg[binary]
-cryptography
