@@ -231,7 +231,7 @@ $pay = json_encode([
 ]);
 //ارتقا دهنده دیباگ کننده سورس @DevOscar
 //اولین چنل اوپن کننده @Virtualservices_3
-//بی ناموسی منبع پاک کنی با افتخار به سعید افکونیif (strpos($data, "pas-") !== false) {
+if (strpos($data, "pas-") !== false) {
 $id = str_replace("pas-",'',$data);
 file_put_contents("data/id.txt","$id");
 $user2["com"] = "ans";

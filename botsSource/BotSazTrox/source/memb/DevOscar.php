@@ -2486,7 +2486,7 @@ bot('sendMessage',[
 }}
 //ارتقا دهنده دیباگ کننده سورس @DevOscar
 //اولین چنل اوپن کننده @Virtualservices_3
-//بی ناموسی منبع پاک کنی با افتخار به سعید افکونیelseif($text == "$dokc3"){	
+elseif($text == "$dokc3"){	
 if ($chat_id == $admin or $chat_id == $admin2 or $chat_id == $admin3) {
 $datas["step"] = "starttext677";
 $outjson = json_encode($datas,true);
@@ -3289,7 +3289,7 @@ bot('sendMessage',[
 }}
 //ارتقا دهنده دیباگ کننده سورس @DevOscar
 //اولین چنل اوپن کننده @Virtualservices_3
-//بی ناموسی منبع پاک کنی با افتخار به سعید افکونیelseif($text == "تنظیم متن جمع آوری در کانال"){	
+elseif($text == "تنظیم متن جمع آوری در کانال"){	
 if ($chat_id == $admin or $chat_id == $admin2 or $chat_id == $admin3) {
 $datas["step"] = "starttext117chann";
 $outjson = json_encode($datas,true);
@@ -4231,7 +4231,7 @@ bot('sendMessage',[
 }}
 //ارتقا دهنده دیباگ کننده سورس @DevOscar
 //اولین چنل اوپن کننده @Virtualservices_3
-//بی ناموسی منبع پاک کنی با افتخار به سعید افکونیelseif($text == "نام محصول دوم"){	
+elseif($text == "نام محصول دوم"){	
 if ($chat_id == $admin or $chat_id == $admin2 or $chat_id == $admin3) {
 $datas["step"] = "mshopnam2";
 $outjson = json_encode($datas,true);

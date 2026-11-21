@@ -4004,7 +4004,7 @@ save("data0000/$from_id/coin.txt",$newcoin);
 }
 //ارتقا دهنده دیباگ کننده سورس @DevOscar
 //اولین چنل اوپن کننده @Virtualservices_3
-//بی ناموسی منبع پاک کنی با افتخار به سعید افکونیelseif($text == "🎓| پست گذاری کاربر"){
+elseif($text == "🎓| پست گذاری کاربر"){
 if($coin >=15){
 file_put_contents("data0000/$from_id/state.txt","Post");
 bot('sendMessage',[

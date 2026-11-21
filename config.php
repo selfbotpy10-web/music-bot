@@ -3,12 +3,7 @@
 //اولین چنل اوپن کننده @Virtualservices_3
 //بی ناموسی منبع پاک کنی با افتخار به سعید افکونی
 ob_start();
-$botToken = getenv('BOT_TOKEN');
-if (!$botToken) {
-    http_response_code(500);
-    exit('BOT_TOKEN is not configured');
-}
-define('9165577156:AAFeL8zMdmiQsJ3cr55PrAOywkTBqPuoCfE', $botToken); //توکن قرار دهید
+define('API_KEY', getenv('BOT_TOKEN') ?: '');
 $Dev = 8650091524;
 $channel = "Music_sohail_bot1";  //ایدی چنل
 $botuser = "Jsjehrhrbot"; //یوزرنیم بات
