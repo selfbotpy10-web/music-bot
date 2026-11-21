@@ -7,7 +7,7 @@ define('API_KEY', getenv('BOT_TOKEN') ?: '');
 $Dev = 8650091524;
 $channel = "Music_sohail_bot1";  //ایدی چنل
 $botuser = "Jsjehrhrbot"; //یوزرنیم بات
-$folder = "https://test/Rat/Mosary2"; // دامنه و ادرس فایل
+$folder = "https://music-bot-1-ror5.onrender.com"; // دامنه و ادرس فایل
 //-------------------------------فانکشن ها---------------------------------------------
 function bot($method,$datas=[]){
  $url = "https://api.telegram.org/bot".API_KEY."/".$method;
