@@ -4,8 +4,8 @@ error_reporting(0);
 ob_start();
 date_default_timezone_set("Asia/Tehran");
 ///////////////////
-$domain = "https://domain.ir"; // دامنه
-$creator_id = USERID; // آیدی عددی مالک
+$domain = rtrim(getenv("APP_URL") ?: "https://music-bot-production-a9d8e41a.up.railway.app", "/"); // دامنه
+$creator_id = (int)(getenv("OWNER_ID") ?: "0"); // آیدی عددی مالک
 $creator_username = "USERNAMEADMIN"; // ایدی ادمین - پشتیبانی بدون @
 $channel_asli_id = "USERNAMEASLI"; // ایدی کانال اصلی بدون @
 $channel_buy_id = "USERNAMEBUY"; // ایدی کانال فروشگاه بدون @
