@@ -26,11 +26,11 @@ function railway_db_connect($prefix = 'DB') {
         $url = parse_url($public_url);
 
         if (is_array($url)) {
-            $host = $host ?: ($url['host'] ?? '');
-            $port = $port ?: (int)($url['port'] ?? 3306);
-            $user = $user ?: urldecode($url['user'] ?? '');
-            $password = $password ?: urldecode($url['pass'] ?? '');
-            $database = $database ?: ltrim($url['path'] ?? '', '/');
+            $host = $url['host'] ?? $host;
+            $port = (int)($url['port'] ?? $port);
+            $user = urldecode($url['user'] ?? $user);
+            $password = urldecode($url['pass'] ?? $password);
+            $database = ltrim($url['path'] ?? '', '/') ?: $database;
         }
     }
 
