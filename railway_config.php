@@ -19,6 +19,21 @@ function railway_db_connect($prefix = 'DB') {
     $password = railway_env($prefix . '_PASSWORD', railway_env('MYSQLPASSWORD', ''));
     $database = railway_env($prefix . '_NAME', railway_env('MYSQLDATABASE', ''));
 
+    // Read public MySQL URL when database is in another Railway project.
+    $public_url = railway_env('MYSQL_PUBLIC_URL', '');
+
+    if ($public_url !== '') {
+        $url = parse_url($public_url);
+
+        if (is_array($url)) {
+            $host = $host ?: ($url['host'] ?? '');
+            $port = $port ?: (int)($url['port'] ?? 3306);
+            $user = $user ?: urldecode($url['user'] ?? '');
+            $password = $password ?: urldecode($url['pass'] ?? '');
+            $database = $database ?: ltrim($url['path'] ?? '', '/');
+        }
+    }
+
     if ($host === '' || $user === '' || $database === '' || $port < 1 || $port > 65535) {
         error_log('Railway DB configuration is incomplete or invalid.');
         return false;
