@@ -24,10 +24,6 @@ $tedad_creat_bot = 1;
 define('API_KEY', getenv('BOT_TOKEN') ?: ''); // توکن اصلی ربات‌ساز
 
 //////////////////
-require_once __DIR__ . '/railway_config.php';
-$con = railway_db_connect();
-
-
 // Verify Telegram webhook secret token (Railway-safe).
 $webhook_secret = getenv("WEBHOOK_SECRET") ?: "";
 $telegram_secret = $_SERVER["HTTP_X_TELEGRAM_BOT_API_SECRET_TOKEN"] ?? "";
@@ -40,6 +36,9 @@ if (
     http_response_code(403);
     exit;
 }
+
+require_once __DIR__ . '/railway_config.php';
+$con = railway_db_connect();
 
 // Check connection
 if (!$con)
