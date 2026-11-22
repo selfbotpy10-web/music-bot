@@ -27,35 +27,20 @@ define('API_KEY', getenv('BOT_TOKEN') ?: ''); // توکن اصلی ربات‌س
 require_once __DIR__ . '/railway_config.php';
 $con = railway_db_connect();
 
-$telegram_ip_ranges = [
 
-['lower' => '149.154.160.0', 'upper' => '149.154.175.255'], // literally 149.154.160.0/20
+// Verify Telegram webhook secret token (Railway-safe).
+$webhook_secret = getenv("WEBHOOK_SECRET") ?: "";
+$telegram_secret = $_SERVER["HTTP_X_TELEGRAM_BOT_API_SECRET_TOKEN"] ?? "";
 
-['lower' => '91.108.4.0',    'upper' => '91.108.7.255'],    // literally 91.108.4.0/22
-
-];
-
-
-
-$ip_dec = (float) sprintf("%u", ip2long($_SERVER['REMOTE_ADDR']));
-
-$ok=false;
-
-
-
-foreach ($telegram_ip_ranges as $telegram_ip_range) if (!$ok) {
-
-    // Make sure the IP is valid.
-
-    $lower_dec = (float) sprintf("%u", ip2long($telegram_ip_range['lower']));
-
-    $upper_dec = (float) sprintf("%u", ip2long($telegram_ip_range['upper']));
-
-    if ($ip_dec >= $lower_dec and $ip_dec <= $upper_dec) $ok=true;
-
+if (
+    $webhook_secret === "" ||
+    $telegram_secret === "" ||
+    !hash_equals($webhook_secret, $telegram_secret)
+) {
+    http_response_code(403);
+    exit;
 }
 
-if (!$ok) die("");
 // Check connection
 if (!$con)
  {
