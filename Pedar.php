@@ -6,15 +6,15 @@ date_default_timezone_set("Asia/Tehran");
 ///////////////////
 $domain = rtrim(getenv("APP_URL") ?: "https://music-bot-production-a9d8e41a.up.railway.app", "/"); // دامنه
 $creator_id = (int)(getenv("OWNER_ID") ?: "0"); // آیدی عددی مالک
-$creator_username = "USERNAMEADMIN"; // ایدی ادمین - پشتیبانی بدون @
-$channel_asli_id = "USERNAMEASLI"; // ایدی کانال اصلی بدون @
-$channel_buy_id = "USERNAMEBUY"; // ایدی کانال فروشگاه بدون @
-$channel_mahsol_id  = "-100USERIDBUY"; // آیدی عددی کانال فروشگاه با -100
-$username_pedar_bot = "IDCREATORBOT"; // ایدی رباتساز بدون @
+$creator_username = "KHAN_Sohail_580"; // ایدی ادمین - پشتیبانی بدون @
+$channel_asli_id = "Music_sohail_bot1"; // ایدی کانال اصلی بدون @
+$channel_buy_id = "Music_sohail_bot1"; // ایدی کانال فروشگاه بدون @
+$channel_mahsol_id  = "-1004392744992"; // آیدی عددی کانال فروشگاه با -100
+$username_pedar_bot = "Robotsaz_sohailbot"; // ایدی رباتساز بدون @
 $name_botsaz_fa = "اسم رباتساز"; // اسم رباتساز به فارسی
 $name_botsaz_en = "Name Creator Bot"; // اسم رباتساز به انگلیسی
-$userid_chn_gozarsh_log = "-100USERIDLOG"; // ایدی عددی کانال گزارشات بصورت -100
-$group_admins_id = "-100USERIDADMINSGAP"; // ایدی عددی گروه ادمین برای تایید کردن و رد کردن محصول با -100
+$userid_chn_gozarsh_log = "-1004392744992"; // ایدی عددی کانال گزارشات بصورت -100
+$group_admins_id = "-1003959111723"; // ایدی عددی گروه ادمین برای تایید کردن و رد کردن محصول با -100
 $emtiaz_create_bot = 15; //امتیاز ساخت ربات
 $emtiaz_delete_bot = 15; //امتیاز حذف ربات
 $emtiaz_new = 15; //امتیاز اولین ورود
